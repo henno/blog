@@ -37,8 +37,8 @@ class Application
 		if (!class_exists($this->controller, false))
 		error_out("<b>Error:</b>
 				File  <i>controllers/{$this->controller}.php</i> exists but class <i>{$this->controller}</i> does not. You probably copied the file but forgot to rename the class in the copy.");
-		$controller = new $this->controller;
 
+        $controller = new $this->controller;
 		// Make request and auth properties available to controller
 		$controller->controller = $this->controller;
 		$controller->action = $this->action;
@@ -75,9 +75,10 @@ class Application
 				The action <i>{$controller->controller}::{$controller->action}()</i> does not exist.
 				Open <i>controllers/{$controller->controller}.php</i> and add method <i>{$controller->action}()</i>");
 			$controller->{$controller->action}();
-			$controller->render($controller->template);
-		}
 
+var_dump($controller->controller);
+            $controller->render($controller->template);
+		}
 	}
 
 	private function load_common_functions()

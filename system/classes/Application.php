@@ -76,7 +76,7 @@ class Application
 				Open <i>controllers/{$controller->controller}.php</i> and add method <i>{$controller->action}()</i>");
 			$controller->{$controller->action}();
 
-var_dump($controller->controller);
+//var_dump($controller->controller);
             $controller->render($controller->template);
 		}
 	}

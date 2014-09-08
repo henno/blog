@@ -1,7 +1,6 @@
 
 <?foreach( $posts as $post ):?>
-    <?foreach ($tags[$post['post_id']] as $tag):?>
-        <a href="#"><span class="label" style="background-color: #5bc0de"><?=$tag?></span></a> <?endforeach?>
+
 
     <div class="background"></div>
 
@@ -17,6 +16,8 @@
         <p>
             <?=$post['post_text']?>
         </p>
+        <?foreach ($tags[$post['post_id']] as $tag):?>
+            <a href="#"><span class="label" style="background-color: #5bc0de"><?=$tag?></span></a> <?endforeach?>
     </div>
 </article>
 </div>

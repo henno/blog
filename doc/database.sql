@@ -3,13 +3,19 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Loomise aeg: Sept 04, 2014 kell 02:52 PL
+-- Loomise aeg: Sept 08, 2014 kell 04:17 PL
 -- Serveri versioon: 5.6.17
 -- PHP versioon: 5.5.12
 
 SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Andmebaas: `blog`
@@ -43,6 +49,49 @@ INSERT INTO `post` (`post_id`, `post_subject`, `post_text`, `post_created`, `use
 -- --------------------------------------------------------
 
 --
+-- Tabeli struktuur tabelile `post_tags`
+--
+
+DROP TABLE IF EXISTS `post_tags`;
+CREATE TABLE IF NOT EXISTS `post_tags` (
+  `post_id` int(10) unsigned NOT NULL,
+  `tag_id` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`post_id`,`tag_id`),
+  KEY `tag_id` (`tag_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Andmete tõmmistamine tabelile `post_tags`
+--
+
+INSERT INTO `post_tags` (`post_id`, `tag_id`) VALUES
+(3, 1),
+(4, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Tabeli struktuur tabelile `tag`
+--
+
+DROP TABLE IF EXISTS `tag`;
+CREATE TABLE IF NOT EXISTS `tag` (
+  `tag_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `tag_name` varchar(25) NOT NULL,
+  PRIMARY KEY (`tag_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Andmete tõmmistamine tabelile `tag`
+--
+
+INSERT INTO `tag` (`tag_id`, `tag_name`) VALUES
+(1, 'postitag'),
+(2, 'lihtsalttag');
+
+-- --------------------------------------------------------
+
+--
 -- Tabeli struktuur tabelile `user`
 --
 
@@ -71,4 +120,15 @@ INSERT INTO `user` (`user_id`, `username`, `password`, `deleted`) VALUES
 --
 ALTER TABLE `post`
   ADD CONSTRAINT `post_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
+
+--
+-- Piirangud tabelile `post_tags`
+--
+ALTER TABLE `post_tags`
+  ADD CONSTRAINT `post_tags_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `post` (`post_id`),
+  ADD CONSTRAINT `post_tags_ibfk_2` FOREIGN KEY (`tag_id`) REFERENCES `tag` (`tag_id`);
 SET FOREIGN_KEY_CHECKS=1;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

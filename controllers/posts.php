@@ -27,5 +27,8 @@ class posts extends Controller{
                                 WHERE post_id='$post_id'");
 
         $this->tags = get_all("SELECT*FROM post_tags NATURAL JOIN tag WHERE post_id='$post_id'");
+        $this->comment = get_first("SELECT*FROM comment
+                                    NATURAL JOIN post
+                                    WHERE post_id='$post_id'");
     }
 }

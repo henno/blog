@@ -16,5 +16,27 @@
         </div>
     </article>
 </div>
+<? foreach ($comments as $comment): ?>
+<div class="commentBox">
+    <ul class="commentList">
+        <li>
+            <div class="commenterImage">
+                <img src="http://lorempixel.com/50/50/people/6" />
+            </div>
+            <div class="commentText">
+                <?=$comment['comment_subject']?> <?=$comment['comment_created']?>
 
+            </div>
+        </li>
+    </ul>
+    <form class="form-inline" role="form">
+        <div class="form-group">
+            <input class="form-control" type="text" placeholder="Your comments" />
+        </div>
+        <div class="form-group">
+            <button class="btn btn-default">Add</button>
+        </div>
+    </form>
+</div>
 
+<? endforeach ?>

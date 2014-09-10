@@ -24,7 +24,10 @@
                 <img src="http://lorempixel.com/50/50/people/6" />
             </div>
             <div class="commentText">
-                <?=$comment['comment_subject']?> <?=$comment['comment_created']?>
+                <h2><?=$comment['comment_subject']?> </h2>
+                <?=$comment['comment_created']?>
+                <?=$comment['comment_author']?>
+                <p><?=$comment['comment_text']?></p>
 
             </div>
         </li>

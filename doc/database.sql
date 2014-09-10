@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Loomise aeg: Sept 08, 2014 kell 04:17 PL
+-- Loomise aeg: Sept 10, 2014 kell 12:37 PL
 -- Serveri versioon: 5.6.17
 -- PHP versioon: 5.5.12
 
@@ -20,6 +20,31 @@ SET time_zone = "+00:00";
 --
 -- Andmebaas: `blog`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Tabeli struktuur tabelile `comment`
+--
+
+DROP TABLE IF EXISTS `comment`;
+CREATE TABLE IF NOT EXISTS `comment` (
+  `comment_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `comment_subject` varchar(50) NOT NULL,
+  `comment_author` varchar(100) NOT NULL,
+  `comment_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `comment_text` text NOT NULL,
+  `post_id` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`comment_id`),
+  KEY `post_id` (`post_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Andmete tõmmistamine tabelile `comment`
+--
+
+INSERT INTO `comment` (`comment_id`, `comment_subject`, `comment_author`, `comment_created`, `comment_text`, `post_id`) VALUES
+(3, 'Tere', 'Nublu', '2014-09-10 10:32:17', 'Tere', 3);
 
 -- --------------------------------------------------------
 
@@ -114,6 +139,12 @@ INSERT INTO `user` (`user_id`, `username`, `password`, `deleted`) VALUES
 --
 -- Tõmmistatud tabelite piirangud
 --
+
+--
+-- Piirangud tabelile `comment`
+--
+ALTER TABLE `comment`
+  ADD CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `post` (`post_id`);
 
 --
 -- Piirangud tabelile `post`

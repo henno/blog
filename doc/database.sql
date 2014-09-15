@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Loomise aeg: Sept 15, 2014 kell 10:27 EL
+-- Loomise aeg: Sept 10, 2014 kell 12:37 PL
 -- Serveri versioon: 5.6.17
 -- PHP versioon: 5.5.12
 
@@ -30,23 +30,21 @@ SET time_zone = "+00:00";
 DROP TABLE IF EXISTS `comment`;
 CREATE TABLE IF NOT EXISTS `comment` (
   `comment_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `comment_subject` varchar(50) NOT NULL,
   `comment_author` varchar(100) NOT NULL,
   `comment_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `comment_text` text NOT NULL,
   `post_id` int(10) unsigned NOT NULL,
   PRIMARY KEY (`comment_id`),
   KEY `post_id` (`post_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Andmete tõmmistamine tabelile `comment`
 --
 
-INSERT INTO `comment` (`comment_id`, `comment_author`, `comment_created`, `comment_text`, `post_id`) VALUES
-(3, 'Nublu', '2014-09-10 10:32:17', 'Tere', 3),
-(4, 'Klaabu', '2014-09-10 13:00:24', 'teretere', 3),
-(5, 'Klaabu', '2014-09-10 13:00:31', 'halloo', 3),
-(6, 'Klaabu', '2014-09-10 13:01:24', 'halloo', 3);
+INSERT INTO `comment` (`comment_id`, `comment_subject`, `comment_author`, `comment_created`, `comment_text`, `post_id`) VALUES
+(3, 'Tere', 'Nublu', '2014-09-10 10:32:17', 'Tere', 3);
 
 -- --------------------------------------------------------
 
@@ -127,18 +125,16 @@ CREATE TABLE IF NOT EXISTS `user` (
   `user_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `username` varchar(25) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `active` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `email` varchar(255) NOT NULL,
-  PRIMARY KEY (`user_id`),
-  UNIQUE KEY `UNIQUE` (`username`)
+  `deleted` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
 -- Andmete tõmmistamine tabelile `user`
 --
 
-INSERT INTO `user` (`user_id`, `username`, `password`, `active`, `email`) VALUES
-(1, 'demo', 'demo', 0, '');
+INSERT INTO `user` (`user_id`, `username`, `password`, `deleted`) VALUES
+(1, 'demo', 'demo', 0);
 
 --
 -- Tõmmistatud tabelite piirangud

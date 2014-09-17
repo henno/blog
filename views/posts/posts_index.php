@@ -16,8 +16,8 @@
         <p>
             <?=$post['post_text']?>
         </p>
-        <?foreach ($tags[$post['post_id']] as $tag):?>
-            <a href="#"><span class="label" style="background-color: #5bc0de"><?=$tag?></span></a> <?endforeach?>
+        <? if(!empty($tags[$post['post_id']])): foreach ($tags[$post['post_id']] as $tag):?>
+            <a href="#"><span class="label" style="background-color: #5bc0de"><?=$tag?></span></a> <?endforeach; endif?>
     </div>
 </article>
 </div>

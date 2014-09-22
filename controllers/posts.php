@@ -19,7 +19,7 @@ class posts extends Controller{
 	function index_post(){
         $data = $_POST['data'];
         $data['post_id'] = $this->params[0];
-        $data['user_id'] = '1';
+        $data['user_id'] = $_SESSION['user_id'];
         insert('post', $data);
 	}
     function view() {

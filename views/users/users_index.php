@@ -6,7 +6,7 @@
     <? endforeach ?>
 </ul>
 
-<?php if ($auth->logged_in == true): ?>
+<?php if ($auth->is_admin): ?>
 <h3>Add new user</h3>
 
 <form method="post" id="form">

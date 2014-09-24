@@ -24,8 +24,8 @@ class Application
 		$this->process_uri();
 		$this->handle_routing();
 
-		$this->auth = new Auth;
 		$this->init_db();
+		$this->auth = new Auth;
 
 
 		// Instantiate controller

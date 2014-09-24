@@ -12,7 +12,7 @@ class users extends Controller
 
     function index()
     {
-        $this->users = get_all("SELECT * FROM user");
+        $this->users = get_all("SELECT * FROM user WHERE deleted=0");
 
     }
 
@@ -28,6 +28,11 @@ class users extends Controller
         $data['active'] = isset($data['active']) ? 1 : 0;
         insert('user', $data);
         header('Location: '.BASE_URL .'users/view/'.$this->params[0]);
+    }
+    function delete_post(){
+        $user_id = $_POST['user_id'];
+        update('user', ['deleted'=>'1'], "user_id = '$user_id'");
+        exit("1");
     }
     function edit(){
         $user_id = $this->params[0];

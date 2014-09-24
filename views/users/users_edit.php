@@ -25,7 +25,22 @@
     <button class="btn btn-default" onclick="window.location.href = 'users/view/<?= $user['user_id'] ?>/<?= $user['username'] ?>'">
         Cancel
     </button>
+    <button class="btn btn-danger" onclick="delete_user(<?=$user['user_id']?>)">
+        Delete
+    </button>
     <button class="btn btn-primary" onclick="$('#form').submit()">
         Save
     </button>
 </div>
+
+<script>
+    function delete_user(user_id){
+        $.post("users/delete", {user_id: <?=$user['user_id']?>}, function (data) {
+            if(data == '1'){
+                window.location.href = 'users';
+            }else{
+                alert('Fail');
+            }
+        });
+    }
+</script>

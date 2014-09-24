@@ -22,5 +22,16 @@ class users extends Controller
         $this->user = get_first("SELECT * FROM user WHERE user_id = '$user_id'");
 
     }
+    function edit_post(){
+        $data = $_POST['data'];
+        $data['user_id'] = $this->params[0];
+        $data['active'] = isset($data['active']) ? 1 : 0;
+        insert('user', $data);
+        header('Location: '.BASE_URL .'users/view/'.$this->params[0]);
+    }
+    function edit(){
+        $user_id = $this->params[0];
+        $this->user = get_first("SELECT * FROM user WHERE user_id = '$user_id'");
+    }
 
 } 

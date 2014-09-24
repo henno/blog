@@ -10,7 +10,7 @@
     </tr>
     <tr>
         <th>Active</th>
-        <td><?= $user['active'] ?></td>
+        <td><input type="checkbox" name="data[active]" <?= $user['active'] != 0 ? 'checked="checked"' : '' ?> disabled="disabled"/></td>
     </tr>
     <tr>
         <th>Email</th>
@@ -20,7 +20,9 @@
 
 <!-- EDIT BUTTON -->
 <form action="users/edit/<?= $user['user_id'] ?>">
-    <button class="btn btn-info">
-        Edit <?= $user['username'] ?>
-    </button>
+    <div class="pull-right">
+        <button class="btn btn-primary">
+            Edit
+        </button>
+    </div>
 </form>

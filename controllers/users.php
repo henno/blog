@@ -19,6 +19,8 @@ class users extends Controller
     function view()
     {
         $user_id = $this->params[0];
+        if(empty($user_id))
+            error_out('Check user ID in address bar');
         $this->user = get_first("SELECT * FROM user WHERE user_id = '$user_id'");
 
     }

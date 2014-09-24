@@ -22,10 +22,10 @@ class Application
 		$this->set_base_url();
 		$this->load_config();
 		$this->process_uri();
-		$this->handle_routing();
+        $this->init_db();
+        $this->handle_routing();
 
-		$this->init_db();
-		$this->auth = new Auth;
+        $this->auth = new Auth;
 
 
 		// Instantiate controller
@@ -127,6 +127,17 @@ class Application
 	private function handle_routing()
 	{
 		//TODO: write here your own code if you want to manipulate controller, action
+        if($this->action == 'view' && empty($this->params[0]))
+            error_out('ID is missing');
+
+        $table = rtrim($this->controller, "s");
+        $sql = "SELECT {$table}_id FROM $table WHERE {$table}_id = '{$this->params[0]}'";
+
+        $id = get_one($sql);
+
+        if(empty($id)){
+            error_out("There is no $table with an ID of {$this->params[0]}");
+        }
 	}
 
 	private function init_db()

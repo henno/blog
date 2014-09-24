@@ -20,18 +20,26 @@
     </table>
 </form>
 
-<!-- EDIT BUTTON -->
+<!-- BUTTONS -->
 <div class="pull-right">
+
+    <!-- CANCEL -->
     <button class="btn btn-default" onclick="window.location.href = 'users/view/<?= $user['user_id'] ?>/<?= $user['username'] ?>'">
         Cancel
     </button>
+
+    <!-- DELETE -->
     <button class="btn btn-danger" onclick="delete_user(<?=$user['user_id']?>)">
         Delete
     </button>
+
+    <!-- SAVE -->
     <button class="btn btn-primary" onclick="$('#form').submit()">
         Save
     </button>
+
 </div>
+<!-- END BUTTONS -->
 
 <script>
     function delete_user(user_id){

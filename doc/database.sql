@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.14
+-- version 4.1.12
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Loomise aeg: Sept 22, 2014 kell 02:23 PL
--- Serveri versioon: 5.6.17
--- PHP versioon: 5.5.12
+-- Host: localhost:3306
+-- Loomise aeg: Sept 24, 2014 kell 03:38 PM
+-- Serveri versioon: 5.5.34
+-- PHP versioon: 5.5.10
 
 SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -22,7 +22,7 @@ SET time_zone = "+00:00";
 --
 
 DROP TABLE IF EXISTS `comment`;
-CREATE TABLE IF NOT EXISTS `comment` (
+CREATE TABLE `comment` (
   `comment_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `comment_author` varchar(100) NOT NULL,
   `comment_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -52,7 +52,7 @@ INSERT INTO `comment` (`comment_id`, `comment_author`, `comment_created`, `comme
 --
 
 DROP TABLE IF EXISTS `post`;
-CREATE TABLE IF NOT EXISTS `post` (
+CREATE TABLE `post` (
   `post_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `post_subject` varchar(255) NOT NULL,
   `post_text` text NOT NULL,
@@ -88,7 +88,7 @@ INSERT INTO `post` (`post_id`, `post_subject`, `post_text`, `post_created`, `use
 --
 
 DROP TABLE IF EXISTS `post_tags`;
-CREATE TABLE IF NOT EXISTS `post_tags` (
+CREATE TABLE `post_tags` (
   `post_id` int(10) unsigned NOT NULL,
   `tag_id` int(10) unsigned NOT NULL,
   PRIMARY KEY (`post_id`,`tag_id`),
@@ -112,7 +112,7 @@ INSERT INTO `post_tags` (`post_id`, `tag_id`) VALUES
 --
 
 DROP TABLE IF EXISTS `tag`;
-CREATE TABLE IF NOT EXISTS `tag` (
+CREATE TABLE `tag` (
   `tag_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `tag_name` varchar(25) NOT NULL,
   PRIMARY KEY (`tag_id`)
@@ -133,25 +133,28 @@ INSERT INTO `tag` (`tag_id`, `tag_name`) VALUES
 --
 
 DROP TABLE IF EXISTS `user`;
-CREATE TABLE IF NOT EXISTS `user` (
+CREATE TABLE `user` (
   `user_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `username` varchar(25) NOT NULL,
   `password` varchar(255) NOT NULL,
   `active` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `email` varchar(255) NOT NULL,
+  `deleted` tinyint(1) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `UNIQUE` (`username`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 --
 -- Andmete tõmmistamine tabelile `user`
 --
 
-INSERT INTO `user` (`user_id`, `username`, `password`, `active`, `email`) VALUES
-(1, 'demo', 'demo', 0, ''),
-(2, 'klaabu', 'nipi', 0, 'klaabu@klaabu.ee'),
-(3, 'sipsik', 'sipsik', 0, ''),
-(4, 'nublu', 'nublu', 0, '');
+INSERT INTO `user` (`user_id`, `username`, `password`, `active`, `email`, `deleted`) VALUES
+(1, 'demo1', 'demo', 1, '', 1),
+(2, 'klaabu', 'nipi', 1, 'klaabu@sipsik.ee', 1),
+(3, 'sipsik', 'sipsik', 0, '', 0),
+(4, 'nublu', 'nublu', 0, '', 0),
+(5, 'fa', 'fa', 1, 'fa', 0),
+(6, 'maile', 'nipi', 1, 'maile@maile.ee', 0);
 
 --
 -- Tõmmistatud tabelite piirangud

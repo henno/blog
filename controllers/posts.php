@@ -9,7 +9,7 @@ class posts extends Controller{
         foreach ($_tags as $tag) {
             $this->tags[$tag['post_id']][] = $tag['tag_name'];
         }
-        echo "TESTTESTTEST";
+        echo "HOOHOO";
 	}
 
     function index_ajax(){

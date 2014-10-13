@@ -36,7 +36,7 @@ CREATE TABLE `comment` (
 -- Andmete tõmmistamine tabelile `comment`
 --
 
-INSERT INTO `comment` (`comment_id`, `comment_author`, `comment_created`, `comment_text`, `post_id`) VALUES
+INSEdRT INTO `comment` (`comment_id`, `comment_author`, `comment_created`, `comment_text`, `post_id`) VALUES
 (3, 'Nublu', '2014-09-10 10:32:17', 'Tere', 3),
 (4, 'Klaabu', '2014-09-10 13:00:24', 'teretere', 3),
 (5, 'Klaabu', '2014-09-10 13:00:31', 'halloo', 3),
